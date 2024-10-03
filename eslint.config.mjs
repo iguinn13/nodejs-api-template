@@ -24,6 +24,7 @@ export default [
                     'prefix': ['I'],
                 },
             ],
+            'no-fallthrough': 'off'
         }
     }
 ];

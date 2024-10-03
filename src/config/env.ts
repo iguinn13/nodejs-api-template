@@ -9,4 +9,6 @@ export const ENV = {
     SQL_DATABASE_USER: process.env.SQL_DATABASE_USER ?? 'root',
     SQL_DATABASE_DIALECT: process.env.SQL_DATABASE_DIALECT ?? 'pg',
     SQL_DATABASE_PASSWORD: process.env.SQL_DATABASE_PASSWORD ?? 'root',
+
+    JWT_SECRET: process.env.JWT_SECRET ?? 'template'
 };

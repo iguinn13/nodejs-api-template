@@ -8,12 +8,12 @@ import { IHashCryptographyService } from '../../protocols/cryptographies/hash-cr
 
 export class CreateUserUseCase implements ICreateUserUseCase {
     public constructor(
-        private readonly userRepositoryAdapter: IUserRepository,
+        private readonly userRepository: IUserRepository,
         private readonly hashCryptographyService: IHashCryptographyService,
     ) { }
 
     public async execute(input: ICreateUserUseCase.Input): Promise<ICreateUserUseCase.Output> {
-        const userWithTheSameEmail = await this.userRepositoryAdapter.findByEmail(input.email);
+        const userWithTheSameEmail = await this.userRepository.findByEmail(input.email);
         if (userWithTheSameEmail) throw new Error(ICreateUserUseCase.Exceptions.EMAIL_CONFLICT);
 
         const id = randomUUID();
@@ -26,7 +26,7 @@ export class CreateUserUseCase implements ICreateUserUseCase {
             password: hashedPassword,
         });
 
-        await this.userRepositoryAdapter.create(user);
+        await this.userRepository.create(user);
 
         return { id };
     }
