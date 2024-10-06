@@ -1,14 +1,25 @@
 import { ZodSchema } from 'zod';
-import { NextFunction, Request, Response } from 'express';
 
-export const validateRequestPayloadMiddleware = (schema: ZodSchema) => {
-    return async (request: Request, response: Response, next: NextFunction): Promise<void> => {
+import { IHttpMiddleware } from '.';
+import { badRequest, ok } from '../helpers/http';
+import { HttpResponse } from '../controllers/http';
+
+export class ValidateRequestPayloadMiddleware implements IHttpMiddleware {
+    public constructor(
+        private readonly schema: ZodSchema
+    ) {}
+
+    public async handle(request: AuthMiddleware.Request): Promise<HttpResponse> {
         try {
-            schema.parse(request.body);
+            this.schema.parse(request);
 
-            return next();
+            return ok({});
         } catch (error: any) {
-            response.status(400).json({ error: error?.errors[0]?.message });
+            return badRequest(error?.errors[0]?.message);
         }
-    };
-};
+    }
+}
+
+export namespace AuthMiddleware {
+    export type Request = any;
+}

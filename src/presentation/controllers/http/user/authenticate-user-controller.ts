@@ -1,6 +1,5 @@
-import { Request, Response } from 'express';
-
-import { IHttpController } from '..';
+import { HttpResponse, IHttpController } from '..';
+import { serverError, unauthorized } from '../../../helpers/http';
 import { IAuthenticateUserUseCase } from '../../../../domain/use-cases/user/authenticate-user-use-case';
 
 export class AuthenticateUserController implements IHttpController {
@@ -8,27 +7,36 @@ export class AuthenticateUserController implements IHttpController {
         private readonly authenticateUserUseCase: IAuthenticateUserUseCase,
     ) { }
 
-    public async handle(request: Request, response: Response): Promise<void> {
+    public async handle(request: AuthenticateUserController.Request): Promise<HttpResponse> {
         try {
             const input: IAuthenticateUserUseCase.Input = {
-                email: request.body.email,
-                password: request.body.password,
+                email: request.email,
+                password: request.password,
             };
 
             const output = await this.authenticateUserUseCase.execute(input);
 
-            response.status(200).json(output);
+            return {
+                body: output,
+                statusCode: 200,
+            };
         } catch (error: any) {
-            console.error(error.message);
-
             switch (error.message) {
                 case IAuthenticateUserUseCase.Exceptions.USER_NOT_FOUND: {
-                    response.status(401).json({ error: error.message });
+                    return unauthorized(IAuthenticateUserUseCase.Exceptions.USER_NOT_FOUND);
                 }
                 default: {
-                    response.status(500).json({ error: 'Internal server error' });
+                    console.error(error.message);
+                    return serverError();
                 }
             }
         }
+    }
+}
+
+export namespace AuthenticateUserController {
+    export type Request = {
+      email: string;
+      password: string;
     }
 }

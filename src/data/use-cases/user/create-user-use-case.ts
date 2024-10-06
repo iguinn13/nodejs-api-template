@@ -3,21 +3,23 @@ import { randomUUID } from 'crypto';
 import { User } from '../../../domain/entities/user';
 import { ICreateUserUseCase } from '../../../domain/use-cases/user/create-user-use-case';
 
-import { IUserRepository } from '../../protocols/repositories/user-repository';
-import { IHashCryptographyService } from '../../protocols/cryptographies/hash-cryptography-service';
+import { IHashEncrypter } from '../../contracts/cryptographies/hash/encrypter';
+import { ICreateUserRepository } from '../../contracts/repositories/user/create';
+import { IFindUserByEmailRepository } from '../../contracts/repositories/user/find-by-email';
 
 export class CreateUserUseCase implements ICreateUserUseCase {
     public constructor(
-        private readonly userRepository: IUserRepository,
-        private readonly hashCryptographyService: IHashCryptographyService,
+        private readonly hashEncrypter: IHashEncrypter,
+        private readonly createUserRepository: ICreateUserRepository,
+        private readonly findUserByEmailRepository: IFindUserByEmailRepository,
     ) { }
 
     public async execute(input: ICreateUserUseCase.Input): Promise<ICreateUserUseCase.Output> {
-        const userWithTheSameEmail = await this.userRepository.findByEmail(input.email);
+        const userWithTheSameEmail = await this.findUserByEmailRepository.findByEmail(input.email);
         if (userWithTheSameEmail) throw new Error(ICreateUserUseCase.Exceptions.EMAIL_CONFLICT);
 
         const id = randomUUID();
-        const hashedPassword = await this.hashCryptographyService.encrypt(input.password);
+        const hashedPassword = await this.hashEncrypter.encrypt(input.password);
 
         const user = new User({
             id,
@@ -26,7 +28,7 @@ export class CreateUserUseCase implements ICreateUserUseCase {
             password: hashedPassword,
         });
 
-        await this.userRepository.create(user);
+        await this.createUserRepository.create(user);
 
         return { id };
     }

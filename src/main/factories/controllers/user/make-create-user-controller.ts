@@ -1,13 +1,8 @@
-import { CreateUserUseCase } from '../../../../data/use-cases/user/create-user-use-case';
+import { makeCreateUserUseCase } from '../../use-cases/make-create-user';
 import { CreateUserController } from '../../../../presentation/controllers/http/user/create-user-controller';
 
-import { UserRepository } from '../../../../infrastructure/database/sql/repositories/user-repository';
-import { HashCryptographyService } from '../../../../infrastructure/cryptographies/hash-cryptography-service';
-
 export const makeCreateUserController = (): CreateUserController => {
-    const userRepository = new UserRepository();
-    const hashCryptographyService = new HashCryptographyService();
-    const createUserUseCase = new CreateUserUseCase(userRepository, hashCryptographyService);
+    const createUserUseCase = makeCreateUserUseCase();
 
     return new CreateUserController(createUserUseCase);
 };
