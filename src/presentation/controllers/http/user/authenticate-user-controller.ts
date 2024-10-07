@@ -1,5 +1,5 @@
 import { HttpResponse, IHttpController } from '..';
-import { serverError, unauthorized } from '../../../helpers/http';
+import { ok, serverError, unauthorized } from '../../../helpers/http';
 import { IAuthenticateUserUseCase } from '../../../../domain/use-cases/user/authenticate-user-use-case';
 
 export class AuthenticateUserController implements IHttpController {
@@ -16,10 +16,7 @@ export class AuthenticateUserController implements IHttpController {
 
             const output = await this.authenticateUserUseCase.execute(input);
 
-            return {
-                body: output,
-                statusCode: 200,
-            };
+            return ok(output);
         } catch (error: any) {
             switch (error.message) {
                 case IAuthenticateUserUseCase.Exceptions.USER_NOT_FOUND: {
@@ -36,7 +33,7 @@ export class AuthenticateUserController implements IHttpController {
 
 export namespace AuthenticateUserController {
     export type Request = {
-      email: string;
-      password: string;
+        email: string;
+        password: string;
     }
 }
