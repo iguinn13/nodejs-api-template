@@ -1,4 +1,5 @@
 import knex, { Knex } from 'knex';
+import knexStringcase from 'knex-stringcase';
 
 import { knexConfig } from './config';
 import { ISqlDatabaseConnection } from '../contracts/connection';
@@ -21,6 +22,6 @@ export class KnexSqlDatabaseConnectionAdapter implements ISqlDatabaseConnection 
 
     public async connect(): Promise<void> {
         if (this.knex) throw new Error('SQL Database already is connected');
-        this.knex = knex(knexConfig);
+        this.knex = knex(knexStringcase(knexConfig));
     }
 }

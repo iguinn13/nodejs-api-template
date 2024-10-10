@@ -1,5 +1,3 @@
-import { randomUUID } from 'crypto';
-
 import { User } from '../../../domain/entities/user';
 import { ICreateUserUseCase } from '../../../domain/use-cases/user/create-user-use-case';
 
@@ -18,11 +16,9 @@ export class CreateUserUseCase implements ICreateUserUseCase {
         const userWithTheSameEmail = await this.findUserByEmailRepository.findByEmail(input.email);
         if (userWithTheSameEmail) throw new Error(ICreateUserUseCase.Exceptions.EMAIL_CONFLICT);
 
-        const id = randomUUID();
         const hashedPassword = await this.hashEncrypter.encrypt(input.password);
 
-        const user = new User({
-            id,
+        const user = User.make({
             name: input.name,
             email: input.email,
             password: hashedPassword,
@@ -30,6 +26,6 @@ export class CreateUserUseCase implements ICreateUserUseCase {
 
         await this.createUserRepository.create(user);
 
-        return { id };
+        return { id: user.id };
     }
 }
