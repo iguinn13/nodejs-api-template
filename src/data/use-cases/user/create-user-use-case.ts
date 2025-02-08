@@ -1,9 +1,8 @@
-import { User } from '../../../domain/entities/user';
-import { ICreateUserUseCase } from '../../../domain/use-cases/user/create-user-use-case';
+import { ICreateUserUseCase } from '@/domain/use-cases/user/create-user-use-case';
 
-import { IHashEncrypter } from '../../contracts/cryptographies/hash/encrypter';
-import { ICreateUserRepository } from '../../contracts/repositories/user/create';
-import { IFindUserByEmailRepository } from '../../contracts/repositories/user/find-by-email';
+import { IHashEncrypter } from '@/data/contracts/cryptographies/hash/encrypter';
+import { ICreateUserRepository } from '@/data/contracts/repositories/user/create';
+import { IFindUserByEmailRepository } from '@/data/contracts/repositories/user/find-by-email';
 
 export class CreateUserUseCase implements ICreateUserUseCase {
     public constructor(

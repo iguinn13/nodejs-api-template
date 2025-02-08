@@ -1,7 +1,7 @@
 import bcrypt from 'bcrypt';
 
-import { IHashEncrypter } from '../../../data/contracts/cryptographies/hash/encrypter';
-import { IHashComparator } from '../../../data/contracts/cryptographies/hash/comparator';
+import { IHashEncrypter } from '@/data/contracts/cryptographies/hash/encrypter';
+import { IHashComparator } from '@/data/contracts/cryptographies/hash/comparator';
 
 export class BcryptAdapter implements IHashEncrypter, IHashComparator {
     public async encrypt(data: any): Promise<string> {

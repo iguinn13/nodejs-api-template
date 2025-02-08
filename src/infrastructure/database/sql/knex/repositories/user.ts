@@ -1,10 +1,11 @@
 import { Knex } from 'knex';
 
-import { User } from '../../../../../domain/entities/user';
-import { ISqlDatabaseConnection } from '../../contracts/connection';
+import { User } from '@/domain/entities/user';
 
-import { ICreateUserRepository } from '../../../../../data/contracts/repositories/user/create';
-import { IFindUserByEmailRepository } from '../../../../../data/contracts/repositories/user/find-by-email';
+import { ICreateUserRepository } from '@/data/contracts/repositories/user/create';
+import { IFindUserByEmailRepository } from '@/data/contracts/repositories/user/find-by-email';
+
+import { ISqlDatabaseConnection } from '../../contracts/connection';
 
 export class UserRepository implements ICreateUserRepository, IFindUserByEmailRepository {
     private readonly databaseClient: Knex;

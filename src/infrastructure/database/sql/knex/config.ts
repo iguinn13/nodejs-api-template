@@ -1,6 +1,6 @@
 import { Knex } from 'knex';
 
-import { ENV } from '../../../../config/env';
+import { ENV } from '@/config/env';
 
 export const knexConfig: Knex.Config = {
     client: ENV.SQL_DATABASE_DIALECT,

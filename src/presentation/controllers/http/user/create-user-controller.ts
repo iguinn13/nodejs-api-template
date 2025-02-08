@@ -1,6 +1,7 @@
+import { conflict, created, serverError } from '@/presentation/helpers/http';
+import { ICreateUserUseCase } from '@/domain/use-cases/user/create-user-use-case';
+
 import { HttpResponse, IHttpController } from '..';
-import { conflict, created, serverError } from '../../../helpers/http';
-import { ICreateUserUseCase } from '../../../../domain/use-cases/user/create-user-use-case';
 
 export class CreateUserController implements IHttpController {
     public constructor(

@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
 
-import { ENV } from '../../../config/env';
-import { ISignAccessToken } from '../../../data/contracts/cryptographies/access-token/sign';
+import { ENV } from '@/config/env';
+import { ISignAccessToken } from '@/data/contracts/cryptographies/access-token/sign';
 
 export class JWTAdapter implements ISignAccessToken {
     public sign(data: any): string {

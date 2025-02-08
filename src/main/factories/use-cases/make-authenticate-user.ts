@@ -1,9 +1,9 @@
-import { AuthenticateUserUseCase } from '../../../data/use-cases/user/authenticate-user-use-case';
+import { AuthenticateUserUseCase } from '@/data/use-cases/user/authenticate-user-use-case';
 
-import { BcryptAdapter } from '../../../infrastructure/cryptographies/hash/bcrypt-adapter';
-import { JWTAdapter } from '../../../infrastructure/cryptographies/access-token/jwt-adapter';
-import { UserRepository } from '../../../infrastructure/database/sql/knex/repositories/user';
-import { makeKnexDatabaseConnection } from '../../../infrastructure/database/sql/factories/make-knex-database-connection';
+import { BcryptAdapter } from '@/infrastructure/cryptographies/hash/bcrypt-adapter';
+import { JWTAdapter } from '@/infrastructure/cryptographies/access-token/jwt-adapter';
+import { UserRepository } from '@/infrastructure/database/sql/knex/repositories/user';
+import { makeKnexDatabaseConnection } from '@/infrastructure/database/sql/factories/make-knex-database-connection';
 
 export const makeAuthenticateUserUseCase = (): AuthenticateUserUseCase => {
     const jwtAdapter = new JWTAdapter();

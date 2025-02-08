@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 
-import { IHttpController } from '../../presentation/controllers/http';
+import { IHttpController } from '@/presentation/controllers/http';
 
 export const adaptRoute = (controller: IHttpController) => {
     return async (req: Request, res: Response): Promise<void> => {

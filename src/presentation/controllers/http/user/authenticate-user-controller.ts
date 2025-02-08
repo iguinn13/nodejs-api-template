@@ -1,6 +1,7 @@
+import { ok, serverError, unauthorized } from '@/presentation/helpers/http';
+import { IAuthenticateUserUseCase } from '@/domain/use-cases/user/authenticate-user-use-case';
+
 import { HttpResponse, IHttpController } from '..';
-import { ok, serverError, unauthorized } from '../../../helpers/http';
-import { IAuthenticateUserUseCase } from '../../../../domain/use-cases/user/authenticate-user-use-case';
 
 export class AuthenticateUserController implements IHttpController {
     public constructor(

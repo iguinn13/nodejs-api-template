@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 
-import { IHttpMiddleware } from '../../presentation/middlewares';
+import { IHttpMiddleware } from '@/presentation/middlewares';
 
 export const adaptMiddleware = (middleware: IHttpMiddleware) => {
     return async (req: Request, res: Response, next: NextFunction): Promise<void> => {

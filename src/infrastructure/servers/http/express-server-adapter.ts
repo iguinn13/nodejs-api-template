@@ -3,7 +3,8 @@ import { readdirSync } from 'fs';
 import express, { Router } from 'express';
 
 import { IHttpServer } from '.';
-import { ENV } from '../../../config/env';
+import { ENV } from '@/config/env';
+
 
 export class ExpressHttpServerAdapter implements IHttpServer {
     private static instance: ExpressHttpServerAdapter;
