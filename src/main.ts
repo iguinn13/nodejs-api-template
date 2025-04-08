@@ -14,5 +14,6 @@ const logger = makeLogger();
         await initHttpServer(makeExpressHttpServer());
     } catch (error) {
         logger.error(`Error on init server: ${error}`);
+        process.exit(1);
     }
 })();
