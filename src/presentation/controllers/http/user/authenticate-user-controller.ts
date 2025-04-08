@@ -1,8 +1,9 @@
+import { HttpResponse, IHttpController } from '..';
+
+import { ILogger } from '@/infrastructure/logger/contract';
 import { ok, serverError, unauthorized } from '@/presentation/helpers/http';
 import { IAuthenticateUserUseCase } from '@/domain/use-cases/user/authenticate-user';
 
-import { HttpResponse, IHttpController } from '..';
-import { ILogger } from '@/infrastructure/logger/contract';
 
 export class AuthenticateUserController implements IHttpController {
     public constructor(

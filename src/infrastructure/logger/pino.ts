@@ -2,8 +2,8 @@ import pino from 'pino';
 
 import { ILogger } from './contract';
 
-export class PinoLogger implements ILogger {
-    private static instance: PinoLogger;
+export class PinoLoggerAdapter implements ILogger {
+    private static instance: PinoLoggerAdapter;
     private readonly pinoInstance: pino.Logger;
 
     private constructor() {
@@ -17,9 +17,9 @@ export class PinoLogger implements ILogger {
         });
     }
 
-    public static getInstance(): PinoLogger {
-        if (!PinoLogger.instance) PinoLogger.instance = new PinoLogger();
-        return PinoLogger.instance;
+    public static getInstance(): PinoLoggerAdapter {
+        if (!PinoLoggerAdapter.instance) PinoLoggerAdapter.instance = new PinoLoggerAdapter();
+        return PinoLoggerAdapter.instance;
     }
 
     public info(message: string): void {

@@ -1,8 +1,9 @@
+import { HttpResponse, IHttpController } from '..';
+
+import { ILogger } from '@/infrastructure/logger/contract';
 import { ICreateUserUseCase } from '@/domain/use-cases/user/create-user';
 import { conflict, created, serverError } from '@/presentation/helpers/http';
 
-import { HttpResponse, IHttpController } from '..';
-import { ILogger } from '@/infrastructure/logger/contract';
 
 export class CreateUserController implements IHttpController {
     public constructor(
