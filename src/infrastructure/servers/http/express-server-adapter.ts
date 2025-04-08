@@ -4,16 +4,19 @@ import express, { Router } from 'express';
 
 import { IHttpServer } from '.';
 import { ENV } from '@/config/env';
-
+import { ILogger } from '@/infrastructure/logger/contract';
+import { makeLogger } from '@/infrastructure/logger/factories/make-logger';
 
 export class ExpressHttpServerAdapter implements IHttpServer {
     private static instance: ExpressHttpServerAdapter;
 
     private readonly port: number;
+    private readonly logger: ILogger;
     private readonly expressInstance: express.Application;
 
     private constructor() {
         this.port = +ENV.HTTP_SERVER_PORT;
+        this.logger = makeLogger();
         this.expressInstance = express();
     }
 
@@ -23,7 +26,7 @@ export class ExpressHttpServerAdapter implements IHttpServer {
     }
 
     public listen(): void {
-        this.expressInstance.listen(this.port, () => console.log(`HTTP Server is running at port ${this.port}`));
+        this.expressInstance.listen(this.port, () => this.logger.info(`HTTP Server is running at port ${this.port}`));
     }
 
     public async bootstrap(): Promise<void> {

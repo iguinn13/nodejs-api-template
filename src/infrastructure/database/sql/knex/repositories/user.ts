@@ -2,8 +2,8 @@ import { Knex } from 'knex';
 
 import { User } from '@/domain/entities/user';
 
-import { ICreateUserRepository } from '@/data/contracts/repositories/user/create';
-import { IFindUserByEmailRepository } from '@/data/contracts/repositories/user/find-by-email';
+import { ICreateUserRepository } from '@/data/contracts/repositories/user/create-user';
+import { IFindUserByEmailRepository } from '@/data/contracts/repositories/user/find-user-by-email';
 
 import { ISqlDatabaseConnection } from '../../contracts/connection';
 

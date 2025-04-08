@@ -1,8 +1,8 @@
 import { IHashComparator } from '@/data/contracts/cryptographies/hash/comparator';
 import { ISignAccessToken } from '@/data/contracts/cryptographies/access-token/sign';
-import { IFindUserByEmailRepository } from '@/data/contracts/repositories/user/find-by-email';
+import { IFindUserByEmailRepository } from '@/data/contracts/repositories/user/find-user-by-email';
 
-import { IAuthenticateUserUseCase } from '@/domain/use-cases/user/authenticate-user-use-case';
+import { IAuthenticateUserUseCase } from '@/domain/use-cases/user/authenticate-user';
 
 export class AuthenticateUserUseCase implements IAuthenticateUserUseCase {
     public constructor(

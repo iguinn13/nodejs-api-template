@@ -1,10 +1,12 @@
+import { ICreateUserUseCase } from '@/domain/use-cases/user/create-user';
 import { conflict, created, serverError } from '@/presentation/helpers/http';
-import { ICreateUserUseCase } from '@/domain/use-cases/user/create-user-use-case';
 
 import { HttpResponse, IHttpController } from '..';
+import { ILogger } from '@/infrastructure/logger/contract';
 
 export class CreateUserController implements IHttpController {
     public constructor(
+        private readonly logger: ILogger,
         private readonly createUserUseCase: ICreateUserUseCase,
     ) { }
 
@@ -25,7 +27,7 @@ export class CreateUserController implements IHttpController {
                     return conflict(ICreateUserUseCase.Exceptions.EMAIL_CONFLICT);
                 }
                 default: {
-                    console.error(error.message);
+                    this.logger.error(error.message);
                     return serverError();
                 }
             }

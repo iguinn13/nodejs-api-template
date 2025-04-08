@@ -1,10 +1,12 @@
 import { ok, serverError, unauthorized } from '@/presentation/helpers/http';
-import { IAuthenticateUserUseCase } from '@/domain/use-cases/user/authenticate-user-use-case';
+import { IAuthenticateUserUseCase } from '@/domain/use-cases/user/authenticate-user';
 
 import { HttpResponse, IHttpController } from '..';
+import { ILogger } from '@/infrastructure/logger/contract';
 
 export class AuthenticateUserController implements IHttpController {
     public constructor(
+        private readonly logger: ILogger,
         private readonly authenticateUserUseCase: IAuthenticateUserUseCase,
     ) { }
 
@@ -24,7 +26,7 @@ export class AuthenticateUserController implements IHttpController {
                     return unauthorized(IAuthenticateUserUseCase.Exceptions.USER_NOT_FOUND);
                 }
                 default: {
-                    console.error(error.message);
+                    this.logger.error(error.message);
                     return serverError();
                 }
             }

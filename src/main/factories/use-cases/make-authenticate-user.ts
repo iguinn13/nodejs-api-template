@@ -1,4 +1,4 @@
-import { AuthenticateUserUseCase } from '@/data/use-cases/user/authenticate-user-use-case';
+import { AuthenticateUserUseCase } from '@/data/use-cases/user/authenticate-user';
 
 import { BcryptAdapter } from '@/infrastructure/cryptographies/hash/bcrypt-adapter';
 import { JWTAdapter } from '@/infrastructure/cryptographies/access-token/jwt-adapter';

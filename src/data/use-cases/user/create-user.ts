@@ -1,8 +1,8 @@
-import { ICreateUserUseCase } from '@/domain/use-cases/user/create-user-use-case';
+import { ICreateUserUseCase } from '@/domain/use-cases/user/create-user';
 
 import { IHashEncrypter } from '@/data/contracts/cryptographies/hash/encrypter';
-import { ICreateUserRepository } from '@/data/contracts/repositories/user/create';
-import { IFindUserByEmailRepository } from '@/data/contracts/repositories/user/find-by-email';
+import { ICreateUserRepository } from '@/data/contracts/repositories/user/create-user';
+import { IFindUserByEmailRepository } from '@/data/contracts/repositories/user/find-user-by-email';
 
 export class CreateUserUseCase implements ICreateUserUseCase {
     public constructor(
