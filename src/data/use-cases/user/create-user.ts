@@ -1,3 +1,4 @@
+import { User } from '@/domain/entities/user';
 import { ICreateUserUseCase } from '@/domain/use-cases/user/create-user';
 
 import { IHashEncrypter } from '@/data/contracts/cryptographies/hash/encrypter';
