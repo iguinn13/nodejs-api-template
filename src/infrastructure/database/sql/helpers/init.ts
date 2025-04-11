@@ -1,9 +1,8 @@
+import { ISqlDatabaseClient } from '../contracts/client';
 import { ILogger } from '@/infrastructure/logger/contract';
-import { ISqlDatabaseConnection } from '../contracts/connection';
 
-export const initSqlDatabase = async (sqlDatabaseConnection: ISqlDatabaseConnection, logger: ILogger): Promise<void> => {
-    await sqlDatabaseConnection.connect();
-    await sqlDatabaseConnection.getClient().raw('SELECT 1');
+export const initSqlDatabase = async (sqlDatabaseClient: ISqlDatabaseClient, logger: ILogger): Promise<void> => {
+    await sqlDatabaseClient.connect();
 
     logger.info('SQL Database connected!');
 };

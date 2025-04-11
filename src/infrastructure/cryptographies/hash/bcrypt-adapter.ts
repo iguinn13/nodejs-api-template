@@ -1,14 +1,13 @@
 import bcrypt from 'bcrypt';
 
-import { IHashEncrypter } from '@/data/contracts/cryptographies/hash/encrypter';
-import { IHashComparator } from '@/data/contracts/cryptographies/hash/comparator';
+import { IHashCryptographyService } from '@/application/interfaces/services/cryptographies/hash';
 
-export class BcryptAdapter implements IHashEncrypter, IHashComparator {
-    public async encrypt(data: any): Promise<string> {
-        return bcrypt.hash(data, 12);
+export class BcryptAdapter implements IHashCryptographyService {
+    public encrypt(input: { data: string; }): Promise<string> {
+        return bcrypt.hash(input.data, 10);
     }
 
-    public async compare(params: IHashComparator.Params): IHashComparator.Result {
-        return bcrypt.compare(params.data, params.hashedData);
+    public compare(input: { data: string; hashedData: string; }): Promise<boolean> {
+        return bcrypt.compare(input.data, input.hashedData);
     }
 }

@@ -1,4 +1,4 @@
-import { CreateUserUseCase } from '@/data/use-cases/user/create-user';
+import { CreateUserUseCase } from '@/application/use-cases/user/create-user';
 
 import { BcryptAdapter } from '@/infrastructure/cryptographies/hash/bcrypt-adapter';
 import { UserRepository } from '@/infrastructure/database/sql/knex/repositories/user';

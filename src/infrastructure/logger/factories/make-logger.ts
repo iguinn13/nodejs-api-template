@@ -1,6 +1,6 @@
 import { ILogger } from '../contract';
-import { PinoLoggerAdapter } from '../pino';
+import { PinoAdapter } from '../adapters/pino';
 
 export const makeLogger = (): ILogger => {
-    return PinoLoggerAdapter.getInstance();
+    return PinoAdapter.getInstance();
 };

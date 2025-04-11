@@ -1,5 +1,5 @@
 import { makeLogger } from '@/infrastructure/logger/factories/make-logger';
-import { CreateUserController } from '@/presentation/controllers/http/user/create-user-controller';
+import { CreateUserController } from '@/presentation/controllers/user/create-user-controller';
 
 import { makeCreateUserUseCase } from '../../use-cases/make-create-user';
 

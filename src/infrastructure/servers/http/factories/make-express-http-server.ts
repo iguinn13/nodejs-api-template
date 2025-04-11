@@ -1,5 +1,5 @@
-import { ExpressHttpServerAdapter } from '../express-server-adapter';
+import { ExpressAdapter } from '../adapters/express/server';
 
-export const makeExpressHttpServer = (): ExpressHttpServerAdapter => {
-    return ExpressHttpServerAdapter.getInstance();
+export const makeExpressHttpServer = (): ExpressAdapter => {
+    return ExpressAdapter.getInstance();
 };

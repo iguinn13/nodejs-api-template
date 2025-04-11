@@ -1,4 +1,4 @@
 export interface ILogger {
-    info(message: string): void;
-    error(message: string): void;
+    info(input: { message: string }): void;
+    error(input: { message: string }): void;
 }
