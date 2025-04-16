@@ -5,7 +5,7 @@ This is a Node.js API template built following Clean Architecture principles. It
 ## Technologies Used
 
 - **Express**: HTTP framework for routes and middleware.
-- **Knex**: SQL query builder for database management.
+- **Prisma**: Client for sql database.
 - **Bcrypt**: Password hashing.
 - **JWT**: Token-based authentication and authorization.
 - **Zod**: Data validation library.
