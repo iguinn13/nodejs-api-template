@@ -1,6 +1,6 @@
 # 🧩 Node.js API Template
 
-A clean, scalable and ready-to-go Node.js + TypeScript API template — powered by Express, Prisma and PostgreSQL. This project is designed to help you **build modern REST APIs quickly** without starting from scratch.
+A clean, scalable and ready-to-go Node.js + TypeScript API template — powered by Express, Prisma and PostgreSQL. This project is designed to help you build modern APIs without starting from scratch.
 
 ---
 
@@ -10,7 +10,7 @@ A clean, scalable and ready-to-go Node.js + TypeScript API template — powered 
 - **Express** — lightweight and flexible web framework
 - **Prisma ORM** — type-safe database access
 - **PostgreSQL** — robust relational database
-- **Jest** — delightful JavaScript testing
+- **Jest** — JavaScript testing
 - **ESLint** — code quality and linting
 - **Docker** (optional) — containerized development
 
